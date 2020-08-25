@@ -22,7 +22,9 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -46,7 +48,8 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Company $company
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Company $company)
     {
@@ -56,7 +59,10 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Company $company
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Company $company)
     {
@@ -64,14 +70,12 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'logo' => 'sometimes|image|dimensions:min_width=100,min_height=100',
-            'website' => 'required|exists:companies,id',
+            'website' => 'required|url',
         ]);
-        $file = $request->file('logo');
-        dd($file);
         $company->update([
             'name' => $request['name'],
             'email' => $request['email'],
-            'logo' => $request['logo'],
+            //'logo' => $request['logo'],
             'website' => $request['website'],
         ]);
     }
@@ -79,9 +83,8 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @throws \Exception
-     *
-     * @return \Illuminate\Http\Response
+     * @param Company $company
+     * @return void
      */
     public function destroy(Company $company)
     {

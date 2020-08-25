@@ -23,7 +23,7 @@ Object.keys(rules).forEach(rule => {
   }
 });
 
-const MinDimensions = {
+extend("MinDimensions", {
   message: (field, { width, height } = {}) =>
     "The " + field + " must be at least " + width + "px x " + height + "px.",
   validate: (value, { width, height } = {}) => {
@@ -37,8 +37,20 @@ const MinDimensions = {
     });
   },
   params: ["width", "height"]
-};
-extend("MinDimensions", MinDimensions);
+});
+
+extend("url", {
+  validate: value => {
+    if (value) {
+      return /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(
+        value
+      );
+    }
+
+    return false;
+  },
+  message: field => "The " + field + " must be a valid URL"
+});
 
 const formatFileSize = (
   size,

@@ -23,9 +23,9 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @throws \Illuminate\Validation\ValidationException
-     *
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -51,6 +51,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Employee $employee
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Employee $employee)
@@ -63,9 +64,10 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @throws \Illuminate\Validation\ValidationException
-     *
+     * @param Request $request
+     * @param Employee $employee
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Employee $employee)
     {
@@ -88,9 +90,8 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @throws \Exception
-     *
-     * @return \Illuminate\Http\Response
+     * @param Employee $employee
+     * @return void
      */
     public function destroy(Employee $employee)
     {

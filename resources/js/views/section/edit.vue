@@ -130,9 +130,14 @@ export default {
     },
     submitForm() {
       const formData = new FormData();
-      for (let i in this.editData) {
-        formData.set(i, this.editData[i]);
-      }
+      this.sectionData.fields.map(field => {
+        const editable = field.editable !== false;
+        if (editable) {
+          formData[field.column] = this.editData[field.column];
+        }
+      });
+
+      console.log(formData);
 
       store
         .dispatch("section/updateItem", {

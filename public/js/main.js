@@ -13592,11 +13592,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       var formData = new FormData();
+      this.sectionData.fields.map(function (field) {
+        var editable = field.editable !== false;
 
-      for (var i in this.editData) {
-        formData.set(i, this.editData[i]);
-      }
-
+        if (editable) {
+          formData[field.column] = _this3.editData[field.column];
+        }
+      });
+      console.log(formData);
       _store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch("section/updateItem", {
         route: this.sectionData.route,
         id: this.$route.meta.object.id,
@@ -58604,21 +58607,23 @@ var fields = [{
   column: "name",
   title: "Name",
   type: "text",
-  validation: "required",
-  editable: false
+  validation: "required"
 }, {
   column: "email",
   title: "Email",
   type: "text",
-  validation: "required|email",
-  editable: false
+  validation: "required|email"
 }, {
   column: "logo",
   title: "Logo",
   type: "file",
   fileType: "image",
-  validation: "image|MinDimensions:100,100",
-  editable: false
+  validation: "image|MinDimensions:100,100"
+}, {
+  column: "website",
+  title: "Website",
+  type: "text",
+  validation: "required|url"
 }];
 /* harmony default export */ __webpack_exports__["default"] = ({
   route: route,
@@ -59368,7 +59373,7 @@ Object.keys(vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_3__).forEach(functi
     Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])(rule, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_3__[rule]);
   }
 });
-var MinDimensions = {
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])("MinDimensions", {
   message: function message(field) {
     var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
         width = _ref2.width,
@@ -59397,8 +59402,19 @@ var MinDimensions = {
     });
   },
   params: ["width", "height"]
-};
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])("MinDimensions", MinDimensions);
+});
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])("url", {
+  validate: function validate(value) {
+    if (value) {
+      return /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(value);
+    }
+
+    return false;
+  },
+  message: function message(field) {
+    return "The " + field + " must be a valid URL";
+  }
+});
 
 var formatFileSize = function formatFileSize(size) {
   var units = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ["Byte", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];

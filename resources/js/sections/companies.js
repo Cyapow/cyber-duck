@@ -15,23 +15,26 @@ const fields = [
     column: "name",
     title: "Name",
     type: "text",
-    validation: "required",
-    editable: false
+    validation: "required"
   },
   {
     column: "email",
     title: "Email",
     type: "text",
-    validation: "required|email",
-    editable: false
+    validation: "required|email"
   },
   {
     column: "logo",
     title: "Logo",
     type: "file",
     fileType: "image",
-    validation: "image|MinDimensions:100,100",
-    editable: false
+    validation: "image|MinDimensions:100,100"
+  },
+  {
+    column: "website",
+    title: "Website",
+    type: "text",
+    validation: "required|url"
   }
 ];
 
