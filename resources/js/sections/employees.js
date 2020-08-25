@@ -39,7 +39,8 @@ const fields = [
     column: "company_id",
     title: "Company",
     type: "relationship",
-    object: "companies"
+    viewValue: "company.name",
+    section: "companies"
   }
 ];
 

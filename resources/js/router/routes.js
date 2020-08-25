@@ -5,6 +5,7 @@ import Forgot from "../views/forgot.vue";
 import Profile from "../views/profile.vue";
 import Page404 from "../views/404.vue";
 import EditForm from "../views/section/edit";
+import AddForm from "../views/section/add";
 import View from "../views/section/view";
 import Index from "../views/section/index";
 
@@ -180,6 +181,30 @@ const routes = [
     meta: {
       authRequired: true,
       beforeResolve
+    }
+  },
+  {
+    path: "/:section/add",
+    name: "Add item",
+    component: AddForm,
+    meta: {
+      authRequired: true,
+      beforeResolve(routeTo, routeFrom, next) {
+        try {
+          const sectionData = require("../sections/" + routeTo.params.section)
+            .default;
+          if (sectionData.route) {
+            routeTo.meta.sectionData = sectionData;
+            next();
+          } else {
+            console.log("redirect 2");
+            next({ name: "404", replace: true });
+          }
+        } catch (e) {
+          console.log("redirect 3", e);
+          next({ name: "404", replace: true });
+        }
+      }
     }
   },
   {

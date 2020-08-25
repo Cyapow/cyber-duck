@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -36,13 +37,17 @@ class EmployeeController extends Controller
             'phone' => 'required',
             'company_id' => 'required|exists:companies,id',
         ]);
-        $employee = Employee::create([
-            'first_name' => $request['first_name'],
-            'last_name' => $request['last_name'],
-            'email' => $request['email'],
-            'phone' => $request['phone'],
-            'company_id' => $request['company_id'],
-        ]);
+
+        $company = Company::findOrFail($request['company_id']);
+
+        $employee = $company->employees()->create(
+            $request->only([
+                'first_name',
+                'last_name',
+                'email',
+                'phone'
+            ])
+        );
 
         return response('', 201)
             ->header('Location', Config::get('app.url').'/api/employees/'.$employee->id);

@@ -3,7 +3,7 @@
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
       <div class="container mx-auto px-6 py-8">
         <h3 class="text-gray-700 text-3xl font-medium">
-          Edit {{ sectionData.title }}
+          Add {{ sectionData.title }}
         </h3>
         <div class="mt-4">
           <div class="p-6 bg-white rounded-md shadow-md">
@@ -29,14 +29,6 @@
                       :for="`input-${item.column}`"
                       >{{ item.title }}</label
                     >
-                    <p class="text-gray-900 whitespace-no-wrap">
-                      <a
-                        :href="object[item.column]"
-                        target="_blank"
-                        v-if="object[item.column] !== ''"
-                        >View file</a
-                      >
-                    </p>
                     <input
                       type="file"
                       :class="[
@@ -69,7 +61,7 @@
                         { 'border-red-500': errors[0] }
                       ]"
                       :id="`input-${item.column}`"
-                      v-model="editData[item.column]"
+                      v-model="addData[item.column]"
                     />
                     <p class="text-red-500 text-xs italic">{{ errors[0] }}</p>
                   </ValidationProvider>
@@ -83,7 +75,7 @@
                       type="text"
                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       :id="`input-${item.column}`"
-                      v-model="editData[item.column]"
+                      v-model="addData[item.column]"
                       disabled
                     />
                   </div>
@@ -108,14 +100,21 @@
 <script>
 import Layout from "../../layouts/dashboard";
 import store from "../../store";
+import axios from "axios";
 
 export default {
-  name: "index",
+  name: "Add",
   components: { Layout },
   data() {
     return {
       error: "",
-      editData: {},
+      addData: {
+        first_name: "fjoijioj",
+        last_name: "jkfsaoij",
+        email: "dkopkpk@gmail.com",
+        phone: "0909090808",
+        company_id: "1"
+      },
       object: this.$route.meta.object
     };
   },
@@ -124,16 +123,11 @@ export default {
       return this.$route.meta.sectionData;
     }
   },
-  created() {
-    this.sectionData.fields.map(field => {
-      this.editData[field.column] = this.object[field.column];
-    });
-  },
   methods: {
     async File_onFileChanged(e, column, validate) {
       const { valid } = await validate(e);
       if (valid) {
-        this.editData[column] = e.target.files[0];
+        this.addData[column] = e.target.files[0];
       }
     },
     submitForm() {
@@ -142,24 +136,23 @@ export default {
         const editable = field.editable !== false;
         if (editable) {
           if (field.type === "file") {
-            if (typeof this.editData[field.column] == "object") {
+            if (typeof this.addData[field.column] == "object") {
               data.set(
                 field.column,
-                this.editData[field.column],
-                this.editData[field.column].name
+                this.addData[field.column],
+                this.addData[field.column].name
               );
             }
           } else {
-            data.set(field.column, this.editData[field.column]);
+            data.set(field.column, this.addData[field.column]);
           }
         }
       });
 
       store
-        .dispatch("section/updateItem", {
+        .dispatch("section/createItem", {
           route: this.sectionData.route,
-          id: this.$route.meta.object.id,
-          data: data
+          data
         })
         .then(() => {
           this.$snotify.success(

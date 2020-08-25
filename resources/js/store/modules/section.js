@@ -33,6 +33,10 @@ export const actions = {
     return axios.get(`/api/${route}/${id}`);
   },
 
+  createItem({ commit }, { route, data }) {
+    return axios.post(`/api/${route}`, data);
+  },
+
   updateItem({ commit }, { route, id, data }) {
     return axios.put(`/api/${route}/${id}`, data);
   },

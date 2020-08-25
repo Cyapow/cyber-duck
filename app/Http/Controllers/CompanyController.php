@@ -66,6 +66,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
+        dd('yo@', $request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',

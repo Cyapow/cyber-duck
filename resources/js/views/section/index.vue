@@ -32,8 +32,34 @@
                       v-for="item in sectionData.fields"
                       class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                     >
-                      <p class="text-gray-900 whitespace-no-wrap">
+                      <p
+                        class="text-gray-900 whitespace-no-wrap"
+                        v-if="item.type === 'text'"
+                      >
                         {{ object[item.column] }}
+                      </p>
+                      <p
+                        class="text-gray-900 whitespace-no-wrap"
+                        v-else-if="item.type === 'file'"
+                      >
+                        <a
+                          :href="object[item.column]"
+                          target="_blank"
+                          v-if="object[item.column] !== ''"
+                          >View file</a
+                        >
+                      </p>
+                      <p
+                        class="text-gray-900 whitespace-no-wrap"
+                        v-else-if="item.type === 'relationship'"
+                      >
+                        <a
+                          :href="`/${item.section}/edit/${object[item.column]}`"
+                          target="_blank"
+                          class="text-indigo-600 hover:text-indigo-900"
+                          v-if="object[item.column] !== ''"
+                          >{{ getRelationshipValue(item.viewValue, object) }}</a
+                        >
                       </p>
                     </td>
                     <td
@@ -146,6 +172,9 @@ export default {
     }
   },
   methods: {
+    getRelationshipValue(viewValue, obj) {
+      return viewValue.split(".").reduce((o, i) => o[i], obj);
+    },
     loadPage(url) {
       this.loadedUrl = url;
       store
