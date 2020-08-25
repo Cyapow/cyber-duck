@@ -8,32 +8,32 @@ const fields = [
   {
     column: 'id',
     title: 'ID',
-    type: 'string',
+    type: 'text',
     editable: false,
   },
   {
     column: 'first_name',
     title: 'First Name',
-    type: 'string',
+    type: 'text',
     validation: 'required',
   },
   {
     column: 'last_name',
     title: 'Last Name',
-    type: 'string',
+    type: 'text',
     validation: 'required',
   },
   {
     column: 'email',
     title: 'Email',
-    type: 'string',
+    type: 'text',
     validation: 'required|email',
   },
   {
     column: 'phone',
     title: 'Phone Number',
-    type: 'string',
-    validation: 'image',
+    type: 'text',
+    validation: 'required',
   },
   {
     column: 'company_id',

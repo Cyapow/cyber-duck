@@ -38,7 +38,7 @@ const MinDimensions = {
   },
   params: ['width', 'height'],
 }
-extend('MinimumDimensions', MinDimensions)
+extend('MinDimensions', MinDimensions)
 
 const formatFileSize = (
   size,

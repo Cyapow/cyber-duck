@@ -7,56 +7,89 @@
         </h3>
         <div class="mt-4">
           <div class="p-6 bg-white rounded-md shadow-md">
-            <h2 class="text-lg text-gray-700 font-semibold capitalize"
-              >Account settings</h2
-            >
-
-            <form>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-                <div>
-                  <label class="text-gray-700" for="username">Username</label>
-                  <input
-                    class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
-                    type="text"
-                  />
-                </div>
-
-                <div>
-                  <label class="text-gray-700" for="emailAddress"
-                    >Email Address</label
-                  >
-                  <input
-                    class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
-                    type="email"
-                  />
-                </div>
-
-                <div>
-                  <label class="text-gray-700" for="password">Password</label>
-                  <input
-                    class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
-                    type="password"
-                  />
-                </div>
-
-                <div>
-                  <label class="text-gray-700" for="passwordConfirmation"
-                    >Password Confirmation</label
-                  >
-                  <input
-                    class="form-input w-full mt-2 rounded-md focus:border-indigo-600"
-                    type="password"
-                  />
-                </div>
+            <ValidationObserver v-slot="{ handleSubmit }">
+              <div
+                class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                role="alert"
+                v-if="error"
+              >
+                <span class="block sm:inline">{{ error }}</span>
               </div>
+              <form @submit.prevent="handleSubmit(submitForm)">
+                <div v-for="item in sectionData.fields" class="mb-4">
+                  <ValidationProvider
+                    v-if="item.type === 'file'"
+                    tag="div"
+                    :rules="item.validation"
+                    :name="item.title"
+                    v-slot="{ validate, errors }"
+                  >
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      :for="`input-${item.column}`"
+                      >{{ item.title }}</label
+                    >
+                    <input
+                      type="file"
+                      :class="[
+                        'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
+                        { 'border-red-500': errors[0] }
+                      ]"
+                      @change="
+                        File_onFileChanged($event, item.column, validate)
+                      "
+                      :id="`input-${item.column}`"
+                    />
+                    <p class="text-red-500 text-xs italic">{{ errors[0] }}</p>
+                  </ValidationProvider>
+                  <ValidationProvider
+                    v-else-if="item.editable !== false"
+                    tag="div"
+                    :rules="item.validation"
+                    :name="item.title"
+                    v-slot="{ errors }"
+                  >
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      :for="`input-${item.column}`"
+                      >{{ item.title }}</label
+                    >
+                    <input
+                      type="text"
+                      :class="[
+                        'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
+                        { 'border-red-500': errors[0] }
+                      ]"
+                      :id="`input-${item.column}`"
+                      v-model="editData[item.column]"
+                    />
+                    <p class="text-red-500 text-xs italic">{{ errors[0] }}</p>
+                  </ValidationProvider>
+                  <div v-else>
+                    <label
+                      class="block text-gray-700 text-sm font-bold mb-2"
+                      :for="`input-${item.column}`"
+                      >{{ item.title }}</label
+                    >
+                    <input
+                      type="text"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      :id="`input-${item.column}`"
+                      v-model="editData[item.column]"
+                      disabled
+                    />
+                  </div>
+                </div>
 
-              <div class="flex justify-end mt-4">
-                <button
-                  class="px-4 py-2 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
-                  >Save</button
-                >
-              </div>
-            </form>
+                <div class="flex justify-end mt-4">
+                  <button
+                    class="px-4 py-2 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </ValidationObserver>
           </div>
         </div>
       </div>
@@ -65,30 +98,69 @@
 </template>
 
 <script>
-import Layout from '../../layouts/dashboard'
-import store from '../../store'
+import Layout from "../../layouts/dashboard";
+import store from "../../store";
 
 export default {
-  name: 'index',
+  name: "index",
   components: { Layout },
+  data() {
+    return {
+      error: "",
+      editData: {},
+      object: this.$route.meta.object
+    };
+  },
   computed: {
     sectionData() {
-      return this.$route.meta.sectionData
-    },
+      return this.$route.meta.sectionData;
+    }
+  },
+  created() {
+    this.sectionData.fields.map(field => {
+      this.editData[field.column] = this.object[field.column];
+    });
   },
   methods: {
-    loadPage(url) {
+    async File_onFileChanged(e, column, validate) {
+      const { valid } = await validate(e);
+      if (valid) {
+        this.editData[column] = e.target.files[0];
+      }
+    },
+    submitForm() {
+      const formData = new FormData();
+      for (let i in this.editData) {
+        formData.set(i, this.editData[i]);
+      }
+
       store
-        .dispatch('section/fetchPaginated', {
+        .dispatch("section/updateItem", {
           route: this.sectionData.route,
-          url,
+          id: this.$route.meta.object.id,
+          data: formData
         })
         .then(() => {
-          this.data = this.$store.getters['section/data'](
-            this.$route.meta.sectionData.route
-          )
+          this.$snotify.success(
+            `${this.sectionData.title} successfully saved!`,
+            "Saved",
+            {
+              timeout: 2000,
+              showProgressBar: false
+            }
+          );
         })
-    },
-  },
-}
+        .catch(() => {
+          this.$snotify.error(
+            `Error saving ${this.sectionData.title} please try again`,
+            "Error",
+            {
+              timeout: 2000,
+              showProgressBar: false
+            }
+          );
+        });
+    }
+  }
+};
 </script>

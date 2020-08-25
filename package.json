@@ -4,7 +4,13 @@
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "clean": "rm -r node_modules && yarn install",
+        "test": "node --expose-gc --max-old-space-size=8192 ./node_modules/jest/bin/jest.js --runInBand",
+        "test:watch": "yarn test --watch",
+        "format:js": "prettier --write \"{src/js,test,tests}/**/*.js\"",
+        "lint": "eslint __mocks__ src/js test/*",
+        "lint:fix": "eslint --fix __mocks__ src/js test/* tests/*"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.5.4",
@@ -14,7 +20,10 @@
         "@vue/cli-service": "^4.5.4",
         "@vue/eslint-config-airbnb": "^5.1.0",
         "axios": "^0.19",
+        "babel": "^6.23.0",
         "babel-eslint": "^10.1.0",
+        "babel-preset-minify": "^0.5.1",
+        "babel-preset-vue": "^2.0.2",
         "cross-env": "^7.0",
         "eslint": "^7.7.0",
         "eslint-plugin-import": "^2.22.0",
@@ -29,9 +38,11 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.30",
+        "@fortawesome/free-regular-svg-icons": "^5.14.0",
         "@fortawesome/free-solid-svg-icons": "^5.14.0",
         "@fortawesome/vue-fontawesome": "^0.1.10",
         "@tailwindcss/custom-forms": "^0.2.1",
+        "add": "^2.0.6",
         "core-js": "^3.6.5",
         "lodash": "^4.17.20",
         "normalize.css": "^8.0.1",
@@ -40,6 +51,8 @@
         "vee-validate": "^3.3.9",
         "vue": "^2.6.12",
         "vue-router": "^3.4.3",
+        "vue-snotify": "^3.2.1",
+        "vue-tailwind": "^1.1.7",
         "vuex": "^3.5.1"
     }
 }

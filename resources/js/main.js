@@ -5,6 +5,8 @@ import store from './store'
 
 import './utils/icons'
 import './utils/vee-validate'
+import './utils/notifications'
+import './utils/tailwind'
 
 Vue.config.productionTip = false
 
