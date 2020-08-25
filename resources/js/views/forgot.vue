@@ -1,24 +1,24 @@
 <script>
-import Layout from '../layouts/main.vue'
-import { authMethods } from '../store/helpers'
+import Layout from "../layouts/main.vue";
+import { authMethods } from "../store/helpers";
 
 export default {
   page: {
-    title: 'Forgot Password',
+    title: "Forgot Password"
   },
   components: { Layout },
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       authError: null,
-      tryingToLogIn: false,
-    }
+      tryingToLogIn: false
+    };
   },
   methods: {
-    ...authMethods,
-  },
-}
+    ...authMethods
+  }
+};
 </script>
 
 <template>
@@ -53,7 +53,7 @@ export default {
                 type="email"
                 :class="[
                   'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
-                  { 'border-red-500': errors[0] },
+                  { 'border-red-500': errors[0] }
                 ]"
                 id="input-email"
                 v-model="email"

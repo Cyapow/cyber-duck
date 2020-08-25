@@ -13087,8 +13087,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'AppHeader',
-  props: ['sidebarOpen', 'toggleSidebar'],
+  name: "AppHeader",
+  props: ["sidebarOpen", "toggleSidebar"],
   data: function data() {
     return {
       dropdownOpen: false
@@ -13098,8 +13098,8 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      this.$store.dispatch('auth/logOut').then(function () {
-        _this.$router.push('/login');
+      this.$store.dispatch("auth/logOut").then(function () {
+        _this.$router.push("/login");
       });
     },
     toggleDropdown: function toggleDropdown(value) {
@@ -13156,19 +13156,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'sidebar',
-  props: ['sidebarOpen', 'toggleSidebar'],
+  name: "sidebar",
+  props: ["sidebarOpen", "toggleSidebar"],
   data: function data() {
     return {
       links: [{
-        link: '/',
-        name: 'Dashboard'
+        link: "/",
+        name: "Dashboard"
       }, {
-        link: '/companies/index',
-        name: 'Companies'
+        link: "/companies/index",
+        name: "Companies"
       }, {
-        link: '/employees/index',
-        name: 'Employees'
+        link: "/employees/index",
+        name: "Employees"
       }]
     };
   },
@@ -13212,7 +13212,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'loggedIn',
+  name: "loggedIn",
   components: {
     Sidebar: _components_sidebar__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppHeader: _components_AppHeader__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -13244,10 +13244,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   page: {
-    title: '404',
+    title: "404",
     meta: [{
-      name: 'description',
-      content: '404'
+      name: "description",
+      content: "404"
     }]
   },
   components: {
@@ -13278,15 +13278,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   page: {
-    title: 'Forgot Password'
+    title: "Forgot Password"
   },
   components: {
     Layout: _layouts_main_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       authError: null,
       tryingToLogIn: false
     };
@@ -13309,7 +13309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   page: {
-    title: 'Home'
+    title: "Home"
   },
   components: {
     Layout: _layouts_dashboard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -13339,15 +13339,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   page: {
-    title: 'Log in'
+    title: "Log in"
   },
   components: {
     Layout: _layouts_main_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       authError: null,
       tryingToLogIn: false
     };
@@ -13368,11 +13368,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.tryingToLogIn = false; // Redirect to the originally requested page, or to the home page
 
         _this.$router.push(_this.$route.query.redirectFrom || {
-          name: 'home'
+          name: "home"
         });
       })["catch"](function (error) {
         _this.tryingToLogIn = false;
-        _this.authError = 'These credentials do not match our records.';
+        _this.authError = "These credentials do not match our records.";
       });
     }
   })
@@ -13396,7 +13396,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: this.user.name,
       meta: [{
-        name: 'description',
+        name: "description",
         content: "The user profile for ".concat(this.user.name, ".")
       }]
     };
@@ -13750,16 +13750,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'index',
+  name: "index",
   components: {
     Layout: _layouts_dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      data: this.$store.getters['section/data'](this.$route.meta.sectionData.route),
+      data: this.$store.getters["section/data"](this.$route.meta.sectionData.route),
       showModal: false,
       deleting: 0,
       loadedUrl: false
@@ -13775,34 +13779,34 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loadedUrl = url;
-      _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('section/fetchPaginated', {
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch("section/fetchPaginated", {
         route: this.sectionData.route,
         url: url
       }).then(function () {
-        _this.data = _this.$store.getters['section/data'](_this.$route.meta.sectionData.route);
+        _this.data = _this.$store.getters["section/data"](_this.$route.meta.sectionData.route);
       });
     },
     showDeleteModal: function showDeleteModal(id) {
       this.deleting = id;
-      this.$modal.show('delete-modal');
+      this.$modal.show("delete-modal");
     },
     DeleteItem: function DeleteItem() {
       var _this2 = this;
 
-      _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('section/deleteItem', {
+      _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch("section/deleteItem", {
         id: this.deleting,
         route: this.sectionData.route
       }).then(function () {
         _this2.reloadItems();
 
-        _this2.$modal.hide('delete-modal');
+        _this2.$modal.hide("delete-modal");
 
-        _this2.$snotify.success("".concat(_this2.sectionData.title, " successfully deleted!"), 'Deleted', {
+        _this2.$snotify.success("".concat(_this2.sectionData.title, " successfully deleted!"), "Deleted", {
           timeout: 2000,
           showProgressBar: false
         });
       })["catch"](function () {
-        _this2.$snotify.error("Error deleting ".concat(_this2.sectionData.title, " please try again"), 'Error', {
+        _this2.$snotify.error("Error deleting ".concat(_this2.sectionData.title, " please try again"), "Error", {
           timeout: 2000,
           showProgressBar: false
         });
@@ -13814,10 +13818,10 @@ __webpack_require__.r(__webpack_exports__);
       if (this.loadedUrl) {
         this.loadPage(this.loadedUrl);
       } else {
-        _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('section/fetchIndex', {
+        _store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch("section/fetchIndex", {
           route: this.sectionData.route
         }).then(function () {
-          _this3.data = _this3.$store.getters['section/data'](_this3.$route.meta.sectionData.route);
+          _this3.data = _this3.$store.getters["section/data"](_this3.$route.meta.sectionData.route);
         });
       }
     }
@@ -13850,14 +13854,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'edit',
+  name: "edit",
   components: {
     Layout: _layouts_dashboard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       authError: null,
       tryingToLogIn: false,
       selectedFiles: false
@@ -14561,7 +14565,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                             },
-                            [_vm._v("Name")]
+                            [
+                              _vm._v(
+                                "\n                    Name\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14570,7 +14578,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                             },
-                            [_vm._v("Title")]
+                            [
+                              _vm._v(
+                                "\n                    Title\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14579,7 +14591,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                             },
-                            [_vm._v("Status")]
+                            [
+                              _vm._v(
+                                "\n                    Status\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14588,7 +14604,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
                             },
-                            [_vm._v("Role")]
+                            [
+                              _vm._v(
+                                "\n                    Role\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c("th", {
@@ -14630,7 +14650,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -14639,7 +14663,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -14658,7 +14686,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -14695,7 +14727,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14749,7 +14785,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -14758,7 +14798,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -14777,7 +14821,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -14814,7 +14862,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14868,7 +14920,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -14877,7 +14933,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -14896,7 +14956,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -14933,7 +14997,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -14987,7 +15055,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -14996,7 +15068,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -15015,7 +15091,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -15052,7 +15132,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -15106,7 +15190,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -15115,7 +15203,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -15134,7 +15226,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -15171,7 +15267,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -15225,7 +15325,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -15234,7 +15338,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -15253,7 +15361,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -15290,7 +15402,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -15344,7 +15460,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -15353,7 +15473,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -15372,7 +15496,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -15409,7 +15537,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -15463,7 +15595,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 font-medium text-gray-900"
                                     },
-                                    [_vm._v("John Doe")]
+                                    [
+                                      _vm._v(
+                                        "\n                          John Doe\n                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -15472,7 +15608,11 @@ var render = function() {
                                       staticClass:
                                         "text-sm leading-5 text-gray-500"
                                     },
-                                    [_vm._v("john@example.com")]
+                                    [
+                                      _vm._v(
+                                        "\n                          john@example.com\n                        "
+                                      )
+                                    ]
                                   )
                                 ])
                               ])
@@ -15491,7 +15631,11 @@ var render = function() {
                                 {
                                   staticClass: "text-sm leading-5 text-gray-900"
                                 },
-                                [_vm._v("Software Engineer")]
+                                [
+                                  _vm._v(
+                                    "\n                      Software Engineer\n                    "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -15528,7 +15672,11 @@ var render = function() {
                               staticClass:
                                 "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
                             },
-                            [_vm._v("Owner")]
+                            [
+                              _vm._v(
+                                "\n                    Owner\n                  "
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -16342,7 +16490,11 @@ var render = function() {
                                         }
                                       }
                                     },
-                                    [_vm._v("Delete")]
+                                    [
+                                      _vm._v(
+                                        "\n                      Delete\n                    "
+                                      )
+                                    ]
                                   )
                                 ],
                                 1
@@ -16409,7 +16561,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Prev")]
+                                [
+                                  _vm._v(
+                                    "\n                  Prev\n                "
+                                  )
+                                ]
                               )
                             : _vm._e(),
                           _vm._v(" "),
@@ -16427,7 +16583,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Next")]
+                                [
+                                  _vm._v(
+                                    "\n                  Next\n                "
+                                  )
+                                ]
                               )
                             : _vm._e()
                         ])
@@ -16483,7 +16643,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n          Cancel\n        ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -16494,7 +16654,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: { click: _vm.DeleteItem }
                       },
-                      [_vm._v("Delete")]
+                      [_vm._v("\n          Delete\n        ")]
                     )
                   ]
                 },
@@ -16514,7 +16674,7 @@ var render = function() {
             _c("div", { staticClass: "text-gray-500 text-center px-20" }, [
               _c("p", [
                 _vm._v(
-                  "Do you really want to delete this record? This process cannot be\n          undone."
+                  "\n          Do you really want to delete this record? This process cannot be\n          undone.\n        "
                 )
               ])
             ])
@@ -57893,7 +58053,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   render: function render(h) {
     return h(_app_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }
-}).$mount('#app');
+}).$mount("#app");
 
 /***/ }),
 
@@ -57940,7 +58100,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   // instead of routes with hashes (e.g. example.com/#/about).
   // This may require some server configuration in production:
   // https://router.vuejs.org/en/essentials/history-mode.html#example-server-configurations
-  mode: 'history',
+  mode: "history",
   // Simulate native-like scroll behavior when navigating to a new
   // route and using back/forward buttons.
   scrollBehavior: function scrollBehavior(to, from, savedPosition) {
@@ -57970,9 +58130,9 @@ router.beforeEach(function (routeTo, routeFrom, next) {
 
   if (!authRequired) return next(); // If auth is required and the user is logged in...
 
-  if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/loggedIn']) {
+  if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters["auth/loggedIn"]) {
     // Validate the local user token...
-    return _store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch('auth/validate').then(function (validUser) {
+    return _store__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch("auth/validate").then(function (validUser) {
       // Then continue if the token still represents a valid user,
       // otherwise redirect to login.
       validUser ? next() : redirectToLogin();
@@ -57986,7 +58146,7 @@ router.beforeEach(function (routeTo, routeFrom, next) {
   function redirectToLogin() {
     // Pass the original route to the login component
     next({
-      name: 'login',
+      name: "login",
       query: {
         redirectFrom: routeTo.fullPath
       }
@@ -58032,7 +58192,7 @@ router.beforeResolve( /*#__PURE__*/function () {
 
 
                               next.apply(void 0, args);
-                              reject(new Error('Redirected'));
+                              reject(new Error("Redirected"));
                             } else {
                               resolve();
                             }
@@ -58432,32 +58592,32 @@ webpackContext.id = "./resources/js/sections sync recursive ^\\.\\/.*$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var route = 'companies';
-var title = 'Company';
-var titlePlural = 'Companies';
+var route = "companies";
+var title = "Company";
+var titlePlural = "Companies";
 var fields = [{
-  column: 'id',
-  title: 'ID',
-  type: 'text',
+  column: "id",
+  title: "ID",
+  type: "text",
   editable: false
 }, {
-  column: 'name',
-  title: 'Name',
-  type: 'text',
-  validation: 'required',
+  column: "name",
+  title: "Name",
+  type: "text",
+  validation: "required",
   editable: false
 }, {
-  column: 'email',
-  title: 'Email',
-  type: 'text',
-  validation: 'required|email',
+  column: "email",
+  title: "Email",
+  type: "text",
+  validation: "required|email",
   editable: false
 }, {
-  column: 'logo',
-  title: 'Logo',
-  type: 'file',
-  fileType: 'image',
-  validation: 'image|MinDimensions:100,100',
+  column: "logo",
+  title: "Logo",
+  type: "file",
+  fileType: "image",
+  validation: "image|MinDimensions:100,100",
   editable: false
 }];
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58478,39 +58638,39 @@ var fields = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var route = 'employees';
-var title = 'Employee';
-var titlePlural = 'Employees';
+var route = "employees";
+var title = "Employee";
+var titlePlural = "Employees";
 var fields = [{
-  column: 'id',
-  title: 'ID',
-  type: 'text',
+  column: "id",
+  title: "ID",
+  type: "text",
   editable: false
 }, {
-  column: 'first_name',
-  title: 'First Name',
-  type: 'text',
-  validation: 'required'
+  column: "first_name",
+  title: "First Name",
+  type: "text",
+  validation: "required"
 }, {
-  column: 'last_name',
-  title: 'Last Name',
-  type: 'text',
-  validation: 'required'
+  column: "last_name",
+  title: "Last Name",
+  type: "text",
+  validation: "required"
 }, {
-  column: 'email',
-  title: 'Email',
-  type: 'text',
-  validation: 'required|email'
+  column: "email",
+  title: "Email",
+  type: "text",
+  validation: "required|email"
 }, {
-  column: 'phone',
-  title: 'Phone Number',
-  type: 'text',
-  validation: 'required'
+  column: "phone",
+  title: "Phone Number",
+  type: "text",
+  validation: "required"
 }, {
-  column: 'company_id',
-  title: 'Company',
-  type: 'relationship',
-  object: 'companies'
+  column: "company_id",
+  title: "Company",
+  type: "relationship",
+  object: "companies"
 }];
 /* harmony default export */ __webpack_exports__["default"] = ({
   route: route,
@@ -58572,8 +58732,8 @@ var routes = [];
     modulesCache[fileName] = moduleDefinition; // Get the module path as an array.
 
     var modulePath = fileName // Remove the "./" from the beginning.
-    .replace(/^\.\//, '') // Remove the file extension from the end.
-    .replace(/\.\w+$/, '') // Split nested modules into an array path.
+    .replace(/^\.\//, "") // Remove the file extension from the end.
+    .replace(/\.\w+$/, "") // Split nested modules into an array path.
     .split(/\//) // camelCase all module namespaces and names.
     .map(lodash_camelCase__WEBPACK_IMPORTED_MODULE_0___default.a);
     /*
@@ -58611,12 +58771,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var authComputed = _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('auth', {
+var authComputed = _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("auth", {
   currentUser: function currentUser(state) {
     return state.currentUser;
   }
-})), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', ['loggedIn']));
-var authMethods = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('auth', ['logIn', 'logOut']);
+})), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("auth", ["loggedIn"]));
+var authMethods = Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("auth", ["logIn", "logOut"]);
 
 /***/ }),
 
@@ -58644,12 +58804,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   // Enable strict mode in development to get a warning
   // when mutating state outside of a mutation.
   // https://vuex.vuejs.org/guide/strict.html
-  strict: "development" !== 'production'
+  strict: "development" !== "production"
 });
 /* harmony default export */ __webpack_exports__["default"] = (store); // Automatically run the `init` action for every module,
 // if one exists.
 
-Object(_utils_dispatch_action_for_all_modules__WEBPACK_IMPORTED_MODULE_2__["default"])('init');
+Object(_utils_dispatch_action_for_all_modules__WEBPACK_IMPORTED_MODULE_2__["default"])("init");
 
 /***/ }),
 
@@ -58705,12 +58865,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var state = {
-  currentUser: getSavedState('auth.currentUser')
+  currentUser: getSavedState("auth.currentUser")
 };
 var mutations = {
   SET_CURRENT_USER: function SET_CURRENT_USER(state, newValue) {
     state.currentUser = newValue;
-    saveState('auth.currentUser', newValue);
+    saveState("auth.currentUser", newValue);
     setDefaultAuthHeaders();
   }
 };
@@ -58726,7 +58886,7 @@ var actions = {
   init: function init(_ref) {
     var dispatch = _ref.dispatch;
     setDefaultAuthHeaders();
-    dispatch('validate');
+    dispatch("validate");
   },
   // Logs in the current user.
   logIn: function logIn(_ref2) {
@@ -58738,23 +58898,23 @@ var actions = {
         email = _ref3.email,
         password = _ref3.password;
 
-    if (getters.loggedIn) return dispatch('validate');
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/login', {
+    if (getters.loggedIn) return dispatch("validate");
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/login", {
       email: email,
       password: password
     }).then(function (response) {
-      localStorage.setItem('auth_token', response.data.access_token);
+      localStorage.setItem("auth_token", response.data.access_token);
       var user = response.data.user;
-      commit('SET_CURRENT_USER', user);
+      commit("SET_CURRENT_USER", user);
       return user;
     });
   },
   // Logs out the current user.
   logOut: function logOut(_ref4) {
     var commit = _ref4.commit;
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/logout').then(function (response) {
-      localStorage.removeItem('auth_token');
-      commit('SET_CURRENT_USER', null);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/logout").then(function (response) {
+      localStorage.removeItem("auth_token");
+      commit("SET_CURRENT_USER", null);
     });
   },
   // Validates the current user's token and refreshes it
@@ -58763,13 +58923,13 @@ var actions = {
     var commit = _ref5.commit,
         state = _ref5.state;
     if (!state.currentUser) return Promise.resolve(null);
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/me').then(function (response) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/me").then(function (response) {
       var user = response.data;
-      commit('SET_CURRENT_USER', user);
+      commit("SET_CURRENT_USER", user);
       return user;
     })["catch"](function (error) {
       if (error.response && error.response.status === 401) {
-        commit('SET_CURRENT_USER', null);
+        commit("SET_CURRENT_USER", null);
       } else {
         console.warn(error);
       }
@@ -58790,8 +58950,8 @@ function saveState(key, state) {
 }
 
 function setDefaultAuthHeaders() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("auth_token");
 }
 
 /***/ }),
@@ -58848,8 +59008,8 @@ var storeData = {
     modulesCache[fileName] = moduleDefinition; // Get the module path as an array.
 
     var modulePath = fileName // Remove the "./" from the beginning.
-    .replace(/^\.\//, '') // Remove the file extension from the end.
-    .replace(/\.\w+$/, '') // Split nested modules into an array path.
+    .replace(/^\.\//, "") // Remove the file extension from the end.
+    .replace(/\.\w+$/, "") // Split nested modules into an array path.
     .split(/\//) // camelCase all module namespaces and names.
     .map(lodash_camelCase__WEBPACK_IMPORTED_MODULE_0___default.a); // Get the modules object for the current path.
 
@@ -59005,7 +59165,7 @@ var actions = {
 
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/".concat(username)).then(function (response) {
       var user = response.data;
-      commit('CACHE_USER', user);
+      commit("CACHE_USER", user);
       return user;
     });
   }
@@ -59032,7 +59192,7 @@ function dispatchActionForAllModules(actionName) {
       _ref$modules = _ref.modules,
       modules = _ref$modules === void 0 ? _store_modules__WEBPACK_IMPORTED_MODULE_0__["default"] : _ref$modules,
       _ref$modulePrefix = _ref.modulePrefix,
-      modulePrefix = _ref$modulePrefix === void 0 ? '' : _ref$modulePrefix,
+      modulePrefix = _ref$modulePrefix === void 0 ? "" : _ref$modulePrefix,
       _ref$flags = _ref.flags,
       flags = _ref$flags === void 0 ? {} : _ref$flags;
 
@@ -59092,7 +59252,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faUsers"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faBuilding"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faTimesCircle"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeIcon"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("font-awesome-icon", _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeIcon"]);
 
 /***/ }),
 
@@ -59137,14 +59297,14 @@ __webpack_require__.r(__webpack_exports__);
 var theme = {
   TModal: {
     fixedClasses: {
-      overlay: 'z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-50 bg-black',
-      wrapper: 'z-50 relative mx-auto my-0 max-w-lg mt-12',
-      modal: 'bg-white shadow overflow-hidden relative rounded-md',
-      body: 'p-4',
-      header: 'p-10  text-sm font-semibold text-gray-700 flex items-center flex-col justify-between',
-      footer: 'p-10 text-sm font-semibold text-gray-700 flex flex-wrap justify-center',
-      close: 'absolute right-0 top-0 m-3 text-gray-700 hover:text-gray-600',
-      closeIcon: 'h-5 w-5 fill-current'
+      overlay: "z-40 overflow-auto left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-50 bg-black",
+      wrapper: "z-50 relative mx-auto my-0 max-w-lg mt-12",
+      modal: "bg-white shadow overflow-hidden relative rounded-md",
+      body: "p-4",
+      header: "p-10  text-sm font-semibold text-gray-700 flex items-center flex-col justify-between",
+      footer: "p-10 text-sm font-semibold text-gray-700 flex flex-wrap justify-center",
+      close: "absolute right-0 top-0 m-3 text-gray-700 hover:text-gray-600",
+      closeIcon: "h-5 w-5 fill-current"
     }
     /*    classes: {
       wrapper: '',
@@ -59197,8 +59357,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 Object.keys(vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_3__).forEach(function (rule) {
-  if (rule === 'size') {
-    Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('size', _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_3__[rule]), {}, {
+  if (rule === "size") {
+    Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])("size", _objectSpread(_objectSpread({}, vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_3__[rule]), {}, {
       message: function message(field, _ref) {
         var size = _ref.size;
         return "The ".concat(field, " field size must be less than ").concat(formatFileSize(size));
@@ -59214,7 +59374,7 @@ var MinDimensions = {
         width = _ref2.width,
         height = _ref2.height;
 
-    return 'The ' + field + ' must be at least ' + width + 'px x ' + height + 'px.';
+    return "The " + field + " must be at least " + width + "px x " + height + "px.";
   },
   validate: function validate(value) {
     var _ref3 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
@@ -59236,22 +59396,22 @@ var MinDimensions = {
       image.src = URL.createObjectURL(value[0]);
     });
   },
-  params: ['width', 'height']
+  params: ["width", "height"]
 };
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])('MinDimensions', MinDimensions);
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["extend"])("MinDimensions", MinDimensions);
 
 var formatFileSize = function formatFileSize(size) {
-  var units = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ['Byte', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  var delimiter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+  var units = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ["Byte", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  var delimiter = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : " ";
   var threshold = 1024;
   size = size * threshold;
   var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(threshold));
   return (size / Math.pow(threshold, i)).toFixed(2) * 1 + delimiter + units[i];
 };
 
-Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["localize"])('en', vee_validate_dist_locale_en_json__WEBPACK_IMPORTED_MODULE_1__);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ValidationObserver', vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ValidationProvider', vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"]);
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_2__["localize"])("en", vee_validate_dist_locale_en_json__WEBPACK_IMPORTED_MODULE_1__);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("ValidationObserver", vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationObserver"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("ValidationProvider", vee_validate__WEBPACK_IMPORTED_MODULE_2__["ValidationProvider"]);
 
 /***/ }),
 

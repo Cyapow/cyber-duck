@@ -1,13 +1,13 @@
 <script>
-import Layout from '../layouts/main.vue'
+import Layout from "../layouts/main.vue";
 
 export default {
   page: {
-    title: '404',
-    meta: [{ name: 'description', content: '404' }],
+    title: "404",
+    meta: [{ name: "description", content: "404" }]
   },
-  components: { Layout },
-}
+  components: { Layout }
+};
 </script>
 
 <template>

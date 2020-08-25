@@ -23,8 +23,7 @@
                     <th
                       class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                       colspan="2"
-                    >
-                    </th>
+                    ></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,8 +48,9 @@
                         type="button"
                         @click="showDeleteModal(object.id)"
                         class="ml-10 text-red-600 hover:text-red-900"
-                        >Delete</button
                       >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 </tbody>
@@ -73,14 +73,16 @@
                     v-if="data.prev_page_url"
                     class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
                     @click="loadPage(data.prev_page_url)"
-                    >Prev</button
                   >
+                    Prev
+                  </button>
                   <button
                     v-if="data.next_page_url"
                     @click="loadPage(data.next_page_url)"
                     class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
-                    >Next</button
                   >
+                    Next
+                  </button>
                 </div>
               </div>
             </div>
@@ -95,24 +97,26 @@
           <h4 class="mt-10 text-4xl">Are you sure?</h4>
         </template>
         <div class="text-gray-500 text-center px-20">
-          <p
-            >Do you really want to delete this record? This process cannot be
-            undone.</p
-          >
+          <p>
+            Do you really want to delete this record? This process cannot be
+            undone.
+          </p>
         </div>
         <template v-slot:footer>
           <button
             type="button"
             class="bg-gray-400 text-white px-10 py-3 mr-2 hover:bg-gray-600 text-lg rounded-md"
             @click="showModal = false"
-            >Cancel</button
           >
+            Cancel
+          </button>
           <button
             type="button"
             class="bg-red-700 text-white px-10 py-3 ml-2 hover:bg-red-900 text-lg rounded-md"
             @click="DeleteItem"
-            >Delete</button
           >
+            Delete
+          </button>
         </template>
       </t-modal>
     </main>
@@ -120,90 +124,90 @@
 </template>
 
 <script>
-import Layout from '../../layouts/dashboard'
-import store from '../../store'
+import Layout from "../../layouts/dashboard";
+import store from "../../store";
 
 export default {
-  name: 'index',
+  name: "index",
   components: { Layout },
   data() {
     return {
-      data: this.$store.getters['section/data'](
+      data: this.$store.getters["section/data"](
         this.$route.meta.sectionData.route
       ),
       showModal: false,
       deleting: 0,
-      loadedUrl: false,
-    }
+      loadedUrl: false
+    };
   },
   computed: {
     sectionData() {
-      return this.$route.meta.sectionData
-    },
+      return this.$route.meta.sectionData;
+    }
   },
   methods: {
     loadPage(url) {
-      this.loadedUrl = url
+      this.loadedUrl = url;
       store
-        .dispatch('section/fetchPaginated', {
+        .dispatch("section/fetchPaginated", {
           route: this.sectionData.route,
-          url,
+          url
         })
         .then(() => {
-          this.data = this.$store.getters['section/data'](
+          this.data = this.$store.getters["section/data"](
             this.$route.meta.sectionData.route
-          )
-        })
+          );
+        });
     },
     showDeleteModal(id) {
-      this.deleting = id
-      this.$modal.show('delete-modal')
+      this.deleting = id;
+      this.$modal.show("delete-modal");
     },
     DeleteItem() {
       store
-        .dispatch('section/deleteItem', {
+        .dispatch("section/deleteItem", {
           id: this.deleting,
-          route: this.sectionData.route,
+          route: this.sectionData.route
         })
         .then(() => {
-          this.reloadItems()
+          this.reloadItems();
 
-          this.$modal.hide('delete-modal')
+          this.$modal.hide("delete-modal");
           this.$snotify.success(
             `${this.sectionData.title} successfully deleted!`,
-            'Deleted',
+            "Deleted",
             {
               timeout: 2000,
-              showProgressBar: false,
+              showProgressBar: false
             }
-          )
+          );
         })
         .catch(() => {
           this.$snotify.error(
             `Error deleting ${this.sectionData.title} please try again`,
-            'Error',
+            "Error",
             {
               timeout: 2000,
-              showProgressBar: false,
+              showProgressBar: false
             }
-          )
-        })
+          );
+        });
     },
     reloadItems() {
       if (this.loadedUrl) {
-        this.loadPage(this.loadedUrl)
+        this.loadPage(this.loadedUrl);
       } else {
         store
-          .dispatch('section/fetchIndex', {
-            route: this.sectionData.route,
+          .dispatch("section/fetchIndex", {
+            route: this.sectionData.route
           })
           .then(() => {
-            this.data = this.$store.getters['section/data'](
+            this.data = this.$store.getters["section/data"](
               this.$route.meta.sectionData.route
-            )
-          })
+            );
+          });
       }
-    },
-  },
-}
+    }
+  }
+};
 </script>

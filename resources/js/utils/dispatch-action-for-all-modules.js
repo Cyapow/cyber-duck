@@ -1,9 +1,9 @@
-import allModules from '../store/modules';
-import store from '../store';
+import allModules from "../store/modules";
+import store from "../store";
 
 export default function dispatchActionForAllModules(
   actionName,
-  { modules = allModules, modulePrefix = '', flags = {} } = {},
+  { modules = allModules, modulePrefix = "", flags = {} } = {}
 ) {
   // For every module...
   for (const moduleName in modules) {
@@ -26,7 +26,7 @@ export default function dispatchActionForAllModules(
       dispatchActionForAllModules(actionName, {
         modules: moduleDefinition.modules,
         modulePrefix: `${modulePrefix + moduleName}/`,
-        flags,
+        flags
       });
     }
   }

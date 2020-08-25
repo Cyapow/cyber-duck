@@ -1,12 +1,12 @@
 <script>
-import Layout from '../layouts/dashboard.vue'
+import Layout from "../layouts/dashboard.vue";
 
 export default {
   page: {
-    title: 'Home',
+    title: "Home"
   },
-  components: { Layout },
-}
+  components: { Layout }
+};
 </script>
 
 <template>
@@ -53,7 +53,7 @@ export default {
           </div>
         </div>
 
-        <div class="mt-8"> </div>
+        <div class="mt-8"></div>
 
         <div class="flex flex-col mt-8">
           <div
@@ -67,20 +67,24 @@ export default {
                   <tr>
                     <th
                       class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      >Name</th
                     >
+                      Name
+                    </th>
                     <th
                       class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      >Title</th
                     >
+                      Title
+                    </th>
                     <th
                       class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      >Status</th
                     >
+                      Status
+                    </th>
                     <th
                       class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
-                      >Role</th
                     >
+                      Role
+                    </th>
                     <th
                       class="px-6 py-3 border-b border-gray-200 bg-gray-50"
                     ></th>
@@ -104,11 +108,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -116,9 +121,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -133,8 +138,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -160,11 +166,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -172,9 +179,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -189,8 +196,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -216,11 +224,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -228,9 +237,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -245,8 +254,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -272,11 +282,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -284,9 +295,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -301,8 +312,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -328,11 +340,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -340,9 +353,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -357,8 +370,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -384,11 +398,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -396,9 +411,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -413,8 +428,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -440,11 +456,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -452,9 +469,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -469,8 +486,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"
@@ -496,11 +514,12 @@ export default {
                         <div class="ml-4">
                           <div
                             class="text-sm leading-5 font-medium text-gray-900"
-                            >John Doe</div
                           >
-                          <div class="text-sm leading-5 text-gray-500"
-                            >john@example.com</div
-                          >
+                            John Doe
+                          </div>
+                          <div class="text-sm leading-5 text-gray-500">
+                            john@example.com
+                          </div>
                         </div>
                       </div>
                     </td>
@@ -508,9 +527,9 @@ export default {
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
                     >
-                      <div class="text-sm leading-5 text-gray-900"
-                        >Software Engineer</div
-                      >
+                      <div class="text-sm leading-5 text-gray-900">
+                        Software Engineer
+                      </div>
                       <div class="text-sm leading-5 text-gray-500">Web dev</div>
                     </td>
 
@@ -525,8 +544,9 @@ export default {
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"
-                      >Owner</td
                     >
+                      Owner
+                    </td>
 
                     <td
                       class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium"

@@ -20,12 +20,12 @@
         :class="[
           {
             'bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100':
-              currentPage === item.link,
+              currentPage === item.link
           },
           {
             'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100':
-              currentPage !== item.link,
-          },
+              currentPage !== item.link
+          }
         ]"
       >
         <span class="mx-4">{{ item.name }}</span>
@@ -36,21 +36,21 @@
 
 <script>
 export default {
-  name: 'sidebar',
-  props: ['sidebarOpen', 'toggleSidebar'],
+  name: "sidebar",
+  props: ["sidebarOpen", "toggleSidebar"],
   data() {
     return {
       links: [
-        { link: '/', name: 'Dashboard' },
-        { link: '/companies/index', name: 'Companies' },
-        { link: '/employees/index', name: 'Employees' },
-      ],
-    }
+        { link: "/", name: "Dashboard" },
+        { link: "/companies/index", name: "Companies" },
+        { link: "/employees/index", name: "Employees" }
+      ]
+    };
   },
   computed: {
     currentPage() {
-      return this.$route.path
-    },
-  },
-}
+      return this.$route.path;
+    }
+  }
+};
 </script>

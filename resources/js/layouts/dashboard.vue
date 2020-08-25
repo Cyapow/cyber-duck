@@ -16,20 +16,20 @@
 </template>
 
 <script>
-import Sidebar from '../components/sidebar'
-import AppHeader from '../components/AppHeader'
+import Sidebar from "../components/sidebar";
+import AppHeader from "../components/AppHeader";
 export default {
-  name: 'loggedIn',
+  name: "loggedIn",
   components: { Sidebar, AppHeader },
   data() {
     return {
-      sidebarOpen: false,
-    }
+      sidebarOpen: false
+    };
   },
   methods: {
     toggleSidebar(value) {
-      this.sidebarOpen = value
-    },
-  },
-}
+      this.sidebarOpen = value;
+    }
+  }
+};
 </script>

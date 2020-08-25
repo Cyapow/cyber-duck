@@ -61,22 +61,22 @@
 
 <script>
 export default {
-  name: 'AppHeader',
-  props: ['sidebarOpen', 'toggleSidebar'],
+  name: "AppHeader",
+  props: ["sidebarOpen", "toggleSidebar"],
   data() {
     return {
-      dropdownOpen: false,
-    }
+      dropdownOpen: false
+    };
   },
   methods: {
     logout() {
-      this.$store.dispatch('auth/logOut').then(() => {
-        this.$router.push('/login')
-      })
+      this.$store.dispatch("auth/logOut").then(() => {
+        this.$router.push("/login");
+      });
     },
     toggleDropdown(value) {
-      this.dropdownOpen = value
-    },
-  },
-}
+      this.dropdownOpen = value;
+    }
+  }
+};
 </script>

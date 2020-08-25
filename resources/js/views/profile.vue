@@ -1,5 +1,5 @@
 <script>
-import Layout from '../layouts/main.vue'
+import Layout from "../layouts/main.vue";
 
 export default {
   page() {
@@ -7,20 +7,20 @@ export default {
       title: this.user.name,
       meta: [
         {
-          name: 'description',
-          content: `The user profile for ${this.user.name}.`,
-        },
-      ],
-    }
+          name: "description",
+          content: `The user profile for ${this.user.name}.`
+        }
+      ]
+    };
   },
   components: { Layout },
   props: {
     user: {
       type: Object,
-      required: true,
-    },
-  },
-}
+      required: true
+    }
+  }
+};
 </script>
 
 <template>

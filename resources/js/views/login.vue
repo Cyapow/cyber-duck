@@ -1,45 +1,45 @@
 <script>
-import Layout from '../layouts/main.vue'
-import { authMethods } from '../store/helpers'
+import Layout from "../layouts/main.vue";
+import { authMethods } from "../store/helpers";
 
 export default {
   page: {
-    title: 'Log in',
+    title: "Log in"
   },
   components: { Layout },
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       authError: null,
-      tryingToLogIn: false,
-    }
+      tryingToLogIn: false
+    };
   },
   methods: {
     ...authMethods,
     // Try to log the user in with the email
     // and password they provided.
     tryToLogIn() {
-      this.tryingToLogIn = true
+      this.tryingToLogIn = true;
       // Reset the authError if it existed.
-      this.authError = null
+      this.authError = null;
       return this.logIn({
         email: this.email,
-        password: this.password,
+        password: this.password
       })
-        .then((token) => {
-          this.tryingToLogIn = false
+        .then(token => {
+          this.tryingToLogIn = false;
 
           // Redirect to the originally requested page, or to the home page
-          this.$router.push(this.$route.query.redirectFrom || { name: 'home' })
+          this.$router.push(this.$route.query.redirectFrom || { name: "home" });
         })
-        .catch((error) => {
-          this.tryingToLogIn = false
-          this.authError = 'These credentials do not match our records.'
-        })
-    },
-  },
-}
+        .catch(error => {
+          this.tryingToLogIn = false;
+          this.authError = "These credentials do not match our records.";
+        });
+    }
+  }
+};
 </script>
 
 <template>
@@ -74,7 +74,7 @@ export default {
                 type="email"
                 :class="[
                   'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
-                  { 'border-red-500': errors[0] },
+                  { 'border-red-500': errors[0] }
                 ]"
                 id="input-email"
                 v-model="email"
@@ -97,7 +97,7 @@ export default {
                 type="password"
                 :class="[
                   'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
-                  { 'border-red-500': errors[0] },
+                  { 'border-red-500': errors[0] }
                 ]"
                 id="input-password"
                 v-model="password"
