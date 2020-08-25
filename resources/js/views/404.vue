@@ -2,28 +2,18 @@
 import Layout from '../layouts/main.vue'
 
 export default {
-    page: {
-        title: '404',
-        meta: [{ name: 'description', content: '404' }],
-    },
-    components: { Layout },
-    props: {
-        resource: {
-            type: String,
-            default: '',
-        },
-    },
+  page: {
+    title: '404',
+    meta: [{ name: 'description', content: '404' }],
+  },
+  components: { Layout },
 }
 </script>
 
 <template>
-    <Layout>
-        <h1>
-            404
-            <template v-if="resource">
-                {{ resource }}
-            </template>
-            Not Found
-        </h1>
-    </Layout>
+  <Layout>
+    <h1>
+      404 Not Found
+    </h1>
+  </Layout>
 </template>

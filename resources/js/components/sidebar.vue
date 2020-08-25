@@ -42,8 +42,8 @@ export default {
     return {
       links: [
         { link: '/', name: 'Dashboard' },
-        { link: '/companies', name: 'Companies' },
-        { link: '/employees', name: 'Employees' },
+        { link: '/companies/index', name: 'Companies' },
+        { link: '/employees/index', name: 'Employees' },
       ],
     }
   },

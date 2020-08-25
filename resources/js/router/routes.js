@@ -10,34 +10,29 @@ import Index from '../views/section/index'
 
 const beforeResolve = (routeTo, routeFrom, next) => {
   try {
-    const section = require('../sections/' + routeTo.params.section).default
+    const sectionData = require('../sections/' + routeTo.params.section).default
 
     store
       .dispatch('section/fetchItem', {
-        route: section.route,
+        route: sectionData.route,
         id: routeTo.params.id,
       })
       .then((response) => {
-        routeTo.meta.tmp.object = response.data
-        routeTo.section = section
+        console.log(response)
+        routeTo.meta.object = response.data
+        routeTo.meta.sectionData = sectionData
         // Continue to the route.
         next()
       })
       .catch(() => {
-        next({ name: '404', params: { resource: 'User' } })
+        next({ name: '404', replace: true })
       })
   } catch (e) {
     next({
       name: '404',
-      params: { resource: capitalize(routeTo.params.section) },
+      replace: true,
     })
   }
-}
-
-const capitalize = (value) => {
-  if (!value) return ''
-  value = value.toString()
-  return value.charAt(0).toUpperCase() + value.slice(1)
 }
 
 const routes = [
@@ -141,10 +136,31 @@ const routes = [
     meta: {
       authRequired: true,
       beforeResolve(routeTo, routeFrom, next) {
-        const section = require('../sections/' + routeTo.params.section).default
-        if (section.route) {
-          routeTo.meta.tmp.section = section
-          next()
+        try {
+          const sectionData = require('../sections/' + routeTo.params.section)
+            .default
+          if (sectionData.route) {
+            console.log('fetchIndex1')
+            store
+              .dispatch('section/fetchIndex', {
+                route: sectionData.route,
+              })
+              .then((response) => {
+                routeTo.meta.sectionData = sectionData
+                // Continue to the route.
+                next()
+              })
+              .catch((e) => {
+                console.log(e)
+                next({ name: '404', replace: true })
+              })
+          } else {
+            console.log('redirect 2')
+            next({ name: '404', replace: true })
+          }
+        } catch (e) {
+          console.log('redirect 3', e)
+          next({ name: '404', replace: true })
         }
       },
     },
@@ -168,16 +184,14 @@ const routes = [
     },
   },
   {
-    path: '*',
     name: '404',
+    path: '/404',
     component: Page404,
-    meta: {
-      authRequired: true,
-    },
-    // Allows props to be passed to the 404 page through route
-    // params, such as `resource` to define what wasn't found.
-    props: true,
-  },
+  } /*,
+  {
+    path: '*',
+    redirect: '404',
+  },*/,
 ]
 
 export default routes

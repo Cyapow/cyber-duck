@@ -47,12 +47,6 @@
           class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20"
           :style="dropdownOpen ? '' : 'display: none;'"
         >
-          <router-link
-            to="/profile"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Profile</router-link
-          >
-
           <a
             href="#"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
