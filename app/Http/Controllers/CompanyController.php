@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Config;
 
 class CompanyController extends Controller
 {
@@ -33,13 +34,12 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'logo' => 'required|image|dimensions:min_width=100,min_height=100',
-            'website' => 'required|exists:companies,id',
+            'website' => 'required|url',
         ]);
 
         $company = Company::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'logo' => $request['logo'],
             'website' => $request['website'],
         ]);
 
@@ -49,7 +49,7 @@ class CompanyController extends Controller
         }
 
         return response('', 201)
-            ->header('Location', Config::get('app.url').'/api/employees/'.$employee->id);
+            ->header('Location', Config::get('app.url').'/api/companies/'.$company->id);
     }
 
     /**
@@ -115,7 +115,7 @@ class CompanyController extends Controller
 
     private function handleLogoUpload(UploadedFile $file)
     {
-        $filename = time().$file->getClientOriginalName();
+        $filename = now()->timestamp.$file->getClientOriginalName();
 
         $file->storePubliclyAs('public/logos', $filename);
         return $filename;
