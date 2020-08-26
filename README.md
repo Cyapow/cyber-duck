@@ -7,6 +7,6 @@ php artisan key:generate
 php artisan migrate
 php artisan jwt:secret
 yarn
-yarn 
+yarn prod
 ```
 
