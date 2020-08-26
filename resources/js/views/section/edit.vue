@@ -31,8 +31,9 @@
                     >
                     <p class="text-gray-900 whitespace-no-wrap">
                       <a
-                        :href="object[item.column]"
+                        :href="`/storage/logos/${object[item.column]}`"
                         target="_blank"
+                        class="text-indigo-600 hover:text-indigo-900"
                         v-if="object[item.column] !== ''"
                         >View file</a
                       >
@@ -162,6 +163,14 @@ export default {
           data: data
         })
         .then(() => {
+          store
+            .dispatch("section/fetchItem", {
+              route: this.sectionData.route,
+              id: this.$route.meta.object.id
+            })
+            .then(response => {
+              this.object = response.data;
+            });
           this.$snotify.success(
             `${this.sectionData.title} successfully saved!`,
             "Saved",

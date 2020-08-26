@@ -102,4 +102,14 @@ class EmployeeController extends Controller
     {
         $employee->delete();
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function count()
+    {
+        return response()->json(['total' => Employee::count()]);
+    }
 }

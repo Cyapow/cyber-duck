@@ -42,7 +42,19 @@ const routes = [
     name: "home",
     component: Home,
     meta: {
-      authRequired: true
+      authRequired: true,
+      beforeResolve(routeTo, routeFrom, next) {
+        Promise.all([
+          store.dispatch("section/counter", {
+            route: "companies"
+          }),
+          store.dispatch("section/counter", {
+            route: "employees"
+          })
+        ]).then(() => {
+          next();
+        });
+      }
     }
   },
   {
@@ -80,47 +92,6 @@ const routes = [
     }
   },
   {
-    path: "/profile",
-    name: "profile",
-    component: Profile,
-    meta: {
-      authRequired: true
-    },
-    props: route => ({ user: store.state.auth.currentUser || {} })
-  },
-  {
-    path: "/profile/:username",
-    name: "username-profile",
-    component: () => import("../views/profile.vue"),
-    meta: {
-      authRequired: true,
-      // HACK: In order to share data between the `beforeResolve` hook
-      // and the `props` function, we must create an object for temporary
-      // data only used during route resolution.
-      tmp: {},
-      beforeResolve(routeTo, routeFrom, next) {
-        store
-          // Try to fetch the user's information by their username
-          .dispatch("users/fetchUser", { username: routeTo.params.username })
-          .then(user => {
-            // Add the user to `meta.tmp`, so that it can
-            // be provided as a prop.
-            routeTo.meta.tmp.user = user;
-            // Continue to the route.
-            next();
-          })
-          .catch(() => {
-            // If a user with the provided username could not be
-            // found, redirect to the 404 page.
-            next({ name: "404", params: { resource: "User" } });
-          });
-      }
-    },
-    // Set the user from the route params, once it's set in the
-    // beforeResolve route guard.
-    props: route => ({ user: route.meta.tmp.user })
-  },
-  {
     path: "/logout",
     name: "logout",
     meta: {
@@ -151,15 +122,12 @@ const routes = [
                 next();
               })
               .catch(e => {
-                console.log(e);
                 next({ name: "404", replace: true });
               });
           } else {
-            console.log("redirect 2");
             next({ name: "404", replace: true });
           }
         } catch (e) {
-          console.log("redirect 3", e);
           next({ name: "404", replace: true });
         }
       }
@@ -211,11 +179,11 @@ const routes = [
     name: "404",
     path: "/404",
     component: Page404
-  } /*,
+  },
   {
-    path: '*',
-    redirect: '404',
-  },*/
+    path: "*",
+    redirect: "404"
+  }
 ];
 
 export default routes;

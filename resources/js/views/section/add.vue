@@ -108,13 +108,7 @@ export default {
   data() {
     return {
       error: "",
-      addData: {
-        first_name: "fjoijioj",
-        last_name: "jkfsaoij",
-        email: "dkopkpk@gmail.com",
-        phone: "0909090808",
-        company_id: "1"
-      },
+      addData: {},
       object: this.$route.meta.object
     };
   },

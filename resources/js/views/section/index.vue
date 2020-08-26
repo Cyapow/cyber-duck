@@ -2,9 +2,17 @@
   <Layout>
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
       <div class="container mx-auto px-6 py-8">
-        <h3 class="text-gray-700 text-3xl font-medium">
-          {{ sectionData.titlePlural }}
-        </h3>
+        <div class="flex justify-between items-center">
+          <h3 class="text-gray-700 text-3xl font-medium">
+            {{ sectionData.titlePlural }}
+          </h3>
+          <router-link
+            :to="`/${sectionData.route}/add`"
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Add new
+          </router-link>
+        </div>
 
         <div class="mt-8">
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -43,8 +51,9 @@
                         v-else-if="item.type === 'file'"
                       >
                         <a
-                          :href="object[item.column]"
+                          :href="`/storage/logos/${object[item.column]}`"
                           target="_blank"
+                          class="text-indigo-600 hover:text-indigo-900"
                           v-if="object[item.column] !== ''"
                           >View file</a
                         >
